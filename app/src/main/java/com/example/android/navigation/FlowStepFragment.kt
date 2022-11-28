@@ -22,6 +22,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -30,7 +31,6 @@ import androidx.navigation.fragment.navArgs
  * Presents how multiple steps flow could be implemented.
  */
 class FlowStepFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,11 +40,12 @@ class FlowStepFragment : Fragment() {
 
         val safeArgs: FlowStepFragmentArgs by navArgs()
         val flowStepNumber = safeArgs.flowStepNumber
-
-        return when (flowStepNumber) {
+        val view = when (flowStepNumber) {
             2 -> inflater.inflate(R.layout.flow_step_two_fragment, container, false)
             else -> inflater.inflate(R.layout.flow_step_one_fragment, container, false)
         }
+        view.findViewById<TextView>(R.id.my_arg).text = flowStepNumber.toString()
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

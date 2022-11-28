@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@+id/home_dest">
     <fragment
         android:id="@+id/home_dest"
@@ -16,7 +16,11 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right" >
+            <argument
+                android:name="flowStepNumber"
+                android:defaultValue="1" />
+        </action>
 
     </fragment>
 
@@ -26,13 +30,16 @@
         tools:layout="@layout/flow_step_one_fragment">
         <argument
             android:name="flowStepNumber"
-            app:argType="integer"
-            android:defaultValue="1"/>
+            android:defaultValue="1"
+            app:argType="integer" />
 
         <action
             android:id="@+id/next_action"
-            app:destination="@+id/flow_step_two_dest">
-        </action>
+            app:destination="@+id/flow_step_two_dest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -42,13 +49,16 @@
 
         <argument
             android:name="flowStepNumber"
-            app:argType="integer"
-            android:defaultValue="2"/>
+            android:defaultValue="2"
+            app:argType="integer" />
 
         <action
             android:id="@+id/next_action"
-            app:popUpTo="@id/home_dest">
-        </action>
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/home_dest" />
     </fragment>
 
     <fragment
@@ -64,8 +74,8 @@
         tools:layout="@layout/deeplink_fragment">
 
         <argument
-            android:name="myarg"
-            android:defaultValue="Android!"/>
-        <deepLink app:uri="www.example.com/{myarg}" />
+            android:name="argLink"
+            android:defaultValue="Android!" />
+        <deepLink app:uri="www.example.com/{argLink}" />
     </fragment>
 </navigation>
